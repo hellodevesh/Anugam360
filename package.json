@@ -1,0 +1,22 @@
+{
+  "name": "mota-scholarship-case-management",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prototype: AI-assisted scholarship case management for MoTA schemes (SIH PS 26239). Static site, OCR runs in the browser.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "node scripts/copy-ocr-assets.mjs",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "start": "vite preview --host 0.0.0.0 --port 4173",
+    "test": "node tests/extract.test.mjs"
+  },
+  "devDependencies": {
+    "@tesseract.js-data/eng": "^1.0.0",
+    "tesseract.js": "^5.1.1",
+    "tesseract.js-core": "^5.1.1",
+    "vite": "^5.4.11"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,18 @@
+/* Demo scholarship catalogue (Stage 4). Descriptions are simplified. Income limits, deadlines and benefits wording are DEMO values, not official rules.
+   NFST rules (education, income, documents) are overridden at runtime from CFG, so the Scheme Engine still controls them. */
+const SCH=[
+{id:'NFST',name:'National Fellowship for ST Students (NFST)',level:'Postgraduate and research',short:'Financial support for Scheduled Tribe students pursuing higher studies and research.',cat:'ST',edu:["Master's",'MPhil'],maxIncome:800000,benefits:['Regular financial support during the course','Additional allowances as per scheme rules'],docs:['ST Certificate','Income Certificate','Marksheet','Research Admission Letter','Bank Document'],deadline:'2026-11-30',portal:'https://tribal.nic.in/ScholarshiP.aspx'},
+{id:'NOS',name:'National Overseas Scholarship Scheme (NOS)',level:'Overseas study',short:'Support for selected Scheduled Tribe students to study postgraduate or PhD programmes abroad.',cat:'ST',edu:["Master's",'MPhil'],maxIncome:600000,benefits:['Support towards studying abroad','Travel and other allowances as per scheme rules'],docs:['ST Certificate','Income Certificate','Marksheet','Admission or Offer Letter','Passport'],deadline:'2027-01-15',portal:'https://tribal.nic.in/ScholarshiP.aspx'},
+{id:'POST',name:'Post-Matric Scholarship Scheme for ST Students',level:'After Class 10 up to Master\'s',short:'Helps Scheduled Tribe students continue their studies after Class 10.',cat:'ST',edu:['Class 12','Graduate',"Master's",'MPhil'],maxIncome:250000,benefits:['Course fee support','Maintenance allowance as per scheme rules'],docs:['ST Certificate','Income Certificate','Marksheet','Bank Document'],deadline:'2026-10-25',portal:'https://tribal.nic.in/ScholarshiP.aspx'},
+{id:'PRE',name:'Pre-Matric Scholarship Scheme for ST Students',level:'Class 9 and 10',short:'Supports Scheduled Tribe students in Classes 9 and 10 to stay in school.',cat:'ST',edu:['Class 12'],maxIncome:250000,benefits:['Yearly scholarship for school expenses','Additional support as per scheme rules'],docs:['ST Certificate','Income Certificate','Marksheet','Bank Document'],deadline:'2026-11-15',portal:'https://tribal.nic.in/ScholarshiP.aspx'},
+{id:'TOP',name:'Top Class Education for ST Students',level:'Professional courses',short:'Supports Scheduled Tribe students admitted to selected top institutions for professional courses.',cat:'ST',edu:['Class 12','Graduate'],maxIncome:600000,benefits:['Tuition and fee support','Living and book allowances as per scheme rules'],docs:['ST Certificate','Income Certificate','Marksheet','Admission or Offer Letter','Bank Document'],deadline:'2026-09-15',portal:'https://tribal.nic.in/ScholarshiP.aspx'}
+];
+
+/* Application fields collected per scheme (Stage 6). Field lists are demo configuration: they only decide what the form asks, never eligibility. */
+const FLD={
+PRE:[{k:'cls',l:'Current class',t:'select',o:['Class 9','Class 10']},{k:'school',l:'School name'},{k:'board',l:'Board',opt:1}],
+POST:[{k:'course',l:'Course name'},{k:'year',l:'Current year of course',t:'select',o:['1','2','3','4','5']},{k:'inst',l:'Institution name'}],
+TOP:[{k:'inst',l:'Institution name'},{k:'course',l:'Course name'},{k:'ay',l:'Year of admission'}],
+NFST:[{k:'inst',l:'University or institution'},{k:'area',l:'Research area or topic'},{k:'sup',l:'Supervisor name'},{k:'reg',l:'Year of registration'}],
+NOS:[{k:'country',l:'Country of study'},{k:'uni',l:'University abroad'},{k:'prog',l:'Programme',t:'select',o:["Master's",'PhD']},{k:'adm',l:'Admission status',t:'select',o:['Offer received','Applied, awaiting result']}]};
+SCH.forEach(s=>{s.fields=FLD[s.id];s.ver=s.ver||'v1 (demo)'});
